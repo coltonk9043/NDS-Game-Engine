@@ -19,7 +19,8 @@
 
 // A global polygon count
 namespace Counter{
-	int Counter::Polygons::count = 0;
+	int Counter::Mesh::polygons = 0;
+	int Counter::Mesh::vertices = 0;
 }
 
 //Verticies for the cube
@@ -121,7 +122,8 @@ int main()
 	// Game loop.
 	while(1) {
 		// Reset the polygon count to 0.
-		Counter::Polygons::count = 0;
+		Counter::Mesh::polygons = 0;
+		Counter::Mesh::vertices = 0;
 
 		// Game Update Logic
 		// Scans for keys.
@@ -184,10 +186,13 @@ int main()
 
 		// Gets Vertex and Polygon RAM count and displays it.
 		glGetInt(GL_GET_VERTEX_RAM_COUNT, &vertex_count);
-		printf("\nObject Count: %i\n", sceneGraph.getNumberOfObjects());
-		printf("\nVertex Count: %i/16000\n", vertex_count);
-		printf("Polygon Count: %i/4000\n", Counter::Polygons::count);
-
+		glGetInt(GL_GET_POLYGON_RAM_COUNT, &polygon_count);
+		printf("\n-= Statistics =-\n");
+		printf("Object Count: %i\n", sceneGraph.getNumberOfObjects());
+		printf("OpenGL Vertex Count: %i/16000\n", vertex_count);
+		printf("OpenGL Polygon Count: %i/4000\n", polygon_count);
+		printf("Custom Vertex Count: %i/16000\n", Counter::Mesh::vertices);
+		printf("Custom Polygon Count: %i/4000\n", Counter::Mesh::polygons);
 		glFlush(0);
 	}
 

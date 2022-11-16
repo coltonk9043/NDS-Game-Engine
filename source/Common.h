@@ -7,9 +7,10 @@
 #define COMMON_H
 
 namespace Counter{
-    class Polygons{
+    class Mesh{
         public:
-            static int count;
+            static int polygons;
+            static int vertices;
     };
 }
 

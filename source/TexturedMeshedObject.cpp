@@ -30,7 +30,7 @@ void TexturedMeshedObject::DrawEntity(){
 
     // For every polygon in the mesh, draw it.
     for(int i = 0; i < this->mesh.polygons; i++){
-        if(Counter::Polygons::count >= 4000) return;
+        if(Counter::Mesh::polygons >= 4000) return;
 
         // Gets the vertices of the quad.
         u32 f1 = quads[i * 4] ;
@@ -55,6 +55,7 @@ void TexturedMeshedObject::DrawEntity(){
 	    glVertex3v16(vertices[f4*3], vertices[f4*3 + 1], vertices[f4*3 + 2] );
         glEnd();
         
-        Counter::Polygons::count++;
+        Counter::Mesh::polygons += 2;
+        Counter::Mesh::vertices += 4;
     }
 }   
