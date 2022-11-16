@@ -23,7 +23,7 @@ namespace Counter{
 }
 
 //Verticies for the cube
-v16 CubeVectors[] = {
+v16 CubeVertices[] = {
  		floattov16(-0.5), floattov16(-0.5), floattov16(0.5), 
 		floattov16(0.5),  floattov16(-0.5), floattov16(0.5),
 		floattov16(0.5),  floattov16(-0.5), floattov16(-0.5),
@@ -107,9 +107,9 @@ int main()
 	// Defines our basic Scene Graph using GameObjects
 	GameObject* root = new GameObject({0,0,0}, {0,0,0}, {1,1,1});
 	Camera* camera = new Camera({0,0,-1.0f}, {0.0f, 0.0f, 0.0f}, {1,1,1});
-	MeshedObject* meshedObject = new MeshedObject({0,0,0}, {0,0,0}, {1,1,1}, {CubeVectors, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
-	ColouredObject* meshedObject2 = new ColouredObject({2,0,1.5}, {30,0,0}, {1,2,1}, {CubeVectors, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, {0.0f,1.0f,0.0f});
-	MeshedObject* meshedObject3 = new MeshedObject({0,1,-2}, {45,0,0}, {1,1,1}, {CubeVectors, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
+	TexturedMeshedObject* meshedObject = new TexturedMeshedObject({0,0,0}, {0,0,0}, {1,1,1}, {CubeVertices, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
+	ColouredMeshedObject* meshedObject2 = new ColouredMeshedObject({2,0,1.5}, {30,0,0}, {1,2,1}, {CubeVertices, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, {0.0f,1.0f,0.0f});
+	TexturedMeshedObject* meshedObject3 = new TexturedMeshedObject({0,1,-2}, {45,0,0}, {1,1,1}, {CubeVertices, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
 
 	// Create our scenegraph
 	SceneGraph sceneGraph {root};
@@ -132,9 +132,9 @@ int main()
 			int r = rand() % 2;
 			GameObject* gm;
 			if(r == 0){
-				gm = new MeshedObject({rand() % 10 - 5.0f,rand() % 10 - 5.0f,rand() % 10 - 5.0f}, {rand() % 180,rand() % 180,0}, {1,1,1}, {CubeVectors, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
+				gm = new TexturedMeshedObject({rand() % 10 - 5.0f,rand() % 10 - 5.0f,rand() % 10 - 5.0f}, {rand() % 180,rand() % 180,0}, {1,1,1}, {CubeVertices, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, textureID);
 			}else{
-				gm = new ColouredObject({rand() % 10 - 5.0f,rand() % 10 - 5.0f,rand() % 10 - 5.0f}, {rand() % 180,rand() % 180,0}, {1,2,1}, {CubeVectors, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, {rand() / double(RAND_MAX),rand() / double(RAND_MAX),rand() / double(RAND_MAX)});
+				gm = new ColouredMeshedObject({rand() % 10 - 5.0f,rand() % 10 - 5.0f,rand() % 10 - 5.0f}, {rand() % 180,rand() % 180,0}, {1,2,1}, {CubeVertices, CubeFaces, uv, normals, (sizeof(CubeFaces)/sizeof(u8))/4}, {rand() / double(RAND_MAX),rand() / double(RAND_MAX),rand() / double(RAND_MAX)});
 			}
 			sceneGraph.addObject(root, gm);
 		}
@@ -184,10 +184,9 @@ int main()
 
 		// Gets Vertex and Polygon RAM count and displays it.
 		glGetInt(GL_GET_VERTEX_RAM_COUNT, &vertex_count);
-		glGetInt(GL_GET_POLYGON_RAM_COUNT, &polygon_count);
 		printf("\nObject Count: %i\n", sceneGraph.getNumberOfObjects());
 		printf("\nVertex Count: %i/16000\n", vertex_count);
-		printf("Polygon Count: %i/4000\n", polygon_count);
+		printf("Polygon Count: %i/4000\n", Counter::Polygons::count);
 
 		glFlush(0);
 	}

@@ -107,7 +107,7 @@ c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0\libgcc.a(_arm_cmpsf2.
 c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0\libgcc.a(_arm_fixsfsi.o)
                               Camera.o (__aeabi_f2iz)
 c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0\libgcc.a(_arm_fixunssfsi.o)
-                              ColouredObject.o (__aeabi_f2uiz)
+                              ColouredMeshObject.o (__aeabi_f2uiz)
 c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0\libgcc.a(_muldi3.o)
                               C:/devkitPro/libnds/lib\libnds9.a(videoGL.o) (__aeabi_lmul)
 c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0\libgcc.a(unwind-arm.o)
@@ -329,16 +329,16 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 texture.bin.o
  .data          0x0000000000000000        0x0 Camera.o
  .bss           0x0000000000000000        0x0 Camera.o
- .data          0x0000000000000000        0x0 ColouredObject.o
- .bss           0x0000000000000000        0x0 ColouredObject.o
+ .data          0x0000000000000000        0x0 ColouredMeshObject.o
+ .bss           0x0000000000000000        0x0 ColouredMeshObject.o
  .data          0x0000000000000000        0x0 GameObject.o
  .bss           0x0000000000000000        0x0 GameObject.o
  .data          0x0000000000000000        0x0 Mesh.o
  .bss           0x0000000000000000        0x0 Mesh.o
- .data          0x0000000000000000        0x0 MeshedObject.o
- .bss           0x0000000000000000        0x0 MeshedObject.o
  .data          0x0000000000000000        0x0 SceneGraph.o
  .bss           0x0000000000000000        0x0 SceneGraph.o
+ .data          0x0000000000000000        0x0 TexturedMeshedObject.o
+ .bss           0x0000000000000000        0x0 TexturedMeshedObject.o
  .data          0x0000000000000000        0x0 Transform.o
  .bss           0x0000000000000000        0x0 Transform.o
  .data          0x0000000000000000        0x0 Vector3.o
@@ -1632,14 +1632,14 @@ Linker script and memory map
                 0x0000000002000bc4                Camera::applyViewingTransformation()
                 0x0000000002001004                Camera::UpdateCameraMatrix()
                 0x0000000002001104                Camera::UpdateEntity(unsigned short)
- .text          0x0000000002001274      0x31c ColouredObject.o
-                0x0000000002001274                ColouredObject::UpdateEntity(unsigned short)
-                0x0000000002001278                ColouredObject::~ColouredObject()
-                0x0000000002001278                ColouredObject::~ColouredObject()
-                0x0000000002001298                ColouredObject::~ColouredObject()
-                0x00000000020012c4                ColouredObject::DrawEntity()
-                0x0000000002001500                ColouredObject::ColouredObject(Vector3, Vector3, Vector3, Mesh, Vector3)
-                0x0000000002001500                ColouredObject::ColouredObject(Vector3, Vector3, Vector3, Mesh, Vector3)
+ .text          0x0000000002001274      0x31c ColouredMeshObject.o
+                0x0000000002001274                ColouredMeshedObject::UpdateEntity(unsigned short)
+                0x0000000002001278                ColouredMeshedObject::~ColouredMeshedObject()
+                0x0000000002001278                ColouredMeshedObject::~ColouredMeshedObject()
+                0x0000000002001298                ColouredMeshedObject::~ColouredMeshedObject()
+                0x00000000020012c4                ColouredMeshedObject::DrawEntity()
+                0x0000000002001500                ColouredMeshedObject::ColouredMeshedObject(Vector3, Vector3, Vector3, Mesh, Vector3)
+                0x0000000002001500                ColouredMeshedObject::ColouredMeshedObject(Vector3, Vector3, Vector3, Mesh, Vector3)
  .text          0x0000000002001590      0x6c0 GameObject.o
                 0x0000000002001590                GameObject::UpdateEntity(unsigned short)
                 0x0000000002001594                GameObject::DrawEntity()
@@ -1670,27 +1670,27 @@ Linker script and memory map
                 0x0000000002001ca0                Mesh::getQuads()
                 0x0000000002001ca8                Mesh::getUV()
                 0x0000000002001cb0                Mesh::getNormals()
- .text          0x0000000002001cb8      0x260 MeshedObject.o
-                0x0000000002001cb8                MeshedObject::UpdateEntity(unsigned short)
-                0x0000000002001cbc                MeshedObject::~MeshedObject()
-                0x0000000002001cbc                MeshedObject::~MeshedObject()
-                0x0000000002001cdc                MeshedObject::~MeshedObject()
-                0x0000000002001d08                MeshedObject::DrawEntity()
-                0x0000000002001e98                MeshedObject::MeshedObject(Vector3, Vector3, Vector3, Mesh, int)
-                0x0000000002001e98                MeshedObject::MeshedObject(Vector3, Vector3, Vector3, Mesh, int)
- .text          0x0000000002001f18      0x108 SceneGraph.o
-                0x0000000002001f18                SceneGraph::SceneGraph(GameObject*)
-                0x0000000002001f18                SceneGraph::SceneGraph(GameObject*)
-                0x0000000002001f20                SceneGraph::~SceneGraph()
-                0x0000000002001f20                SceneGraph::~SceneGraph()
-                0x0000000002001f24                SceneGraph::addObject(GameObject*, GameObject*)
-                0x0000000002001f48                SceneGraph::removeObject(GameObject*)
-                0x0000000002001f7c                SceneGraph::transformObject(GameObject*, float, float, float)
-                0x0000000002001fa8                SceneGraph::rotateObject(GameObject*, float, float, float)
-                0x0000000002001fd8                SceneGraph::scaleObject(GameObject*, float, float, float)
-                0x0000000002002008                SceneGraph::Update(unsigned short)
-                0x0000000002002010                SceneGraph::Draw()
-                0x0000000002002018                SceneGraph::getNumberOfObjects()
+ .text          0x0000000002001cb8      0x108 SceneGraph.o
+                0x0000000002001cb8                SceneGraph::SceneGraph(GameObject*)
+                0x0000000002001cb8                SceneGraph::SceneGraph(GameObject*)
+                0x0000000002001cc0                SceneGraph::~SceneGraph()
+                0x0000000002001cc0                SceneGraph::~SceneGraph()
+                0x0000000002001cc4                SceneGraph::addObject(GameObject*, GameObject*)
+                0x0000000002001ce8                SceneGraph::removeObject(GameObject*)
+                0x0000000002001d1c                SceneGraph::transformObject(GameObject*, float, float, float)
+                0x0000000002001d48                SceneGraph::rotateObject(GameObject*, float, float, float)
+                0x0000000002001d78                SceneGraph::scaleObject(GameObject*, float, float, float)
+                0x0000000002001da8                SceneGraph::Update(unsigned short)
+                0x0000000002001db0                SceneGraph::Draw()
+                0x0000000002001db8                SceneGraph::getNumberOfObjects()
+ .text          0x0000000002001dc0      0x260 TexturedMeshedObject.o
+                0x0000000002001dc0                TexturedMeshedObject::UpdateEntity(unsigned short)
+                0x0000000002001dc4                TexturedMeshedObject::~TexturedMeshedObject()
+                0x0000000002001dc4                TexturedMeshedObject::~TexturedMeshedObject()
+                0x0000000002001de4                TexturedMeshedObject::~TexturedMeshedObject()
+                0x0000000002001e10                TexturedMeshedObject::DrawEntity()
+                0x0000000002001fa0                TexturedMeshedObject::TexturedMeshedObject(Vector3, Vector3, Vector3, Mesh, int)
+                0x0000000002001fa0                TexturedMeshedObject::TexturedMeshedObject(Vector3, Vector3, Vector3, Mesh, int)
  .text          0x0000000002002020      0x184 Transform.o
                 0x0000000002002020                Transform::Transform()
                 0x0000000002002020                Transform::Transform()
@@ -2631,12 +2631,12 @@ Linker script and memory map
  *(EXCLUDE_FILE(*.twl*) .rodata)
  .rodata        0x000000000201a908       0x18 Camera.o
                 0x000000000201a908                vtable for Camera
- .rodata        0x000000000201a920       0x18 ColouredObject.o
-                0x000000000201a920                vtable for ColouredObject
+ .rodata        0x000000000201a920       0x18 ColouredMeshObject.o
+                0x000000000201a920                vtable for ColouredMeshedObject
  .rodata        0x000000000201a938       0x18 GameObject.o
                 0x000000000201a938                vtable for GameObject
- .rodata        0x000000000201a950       0x18 MeshedObject.o
-                0x000000000201a950                vtable for MeshedObject
+ .rodata        0x000000000201a950       0x18 TexturedMeshedObject.o
+                0x000000000201a950                vtable for TexturedMeshedObject
  .rodata        0x000000000201a968       0x24 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
  *all.rodata*(*)
  *(EXCLUDE_FILE(*.twl*) .roda)
@@ -3133,7 +3133,7 @@ ARM.exidx       0x000000000202c1f8      0x180
  .data          0x000000000202c388       0x70 main.o
                 0x000000000202c388                uv
                 0x000000000202c398                CubeFaces
-                0x000000000202c3b0                CubeVectors
+                0x000000000202c3b0                CubeVertices
                 0x000000000202c3e0                normals
  .data          0x000000000202c3f8       0x28 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
  *(EXCLUDE_FILE(*.twl*) .data.*)
@@ -3408,11 +3408,11 @@ ARM.exidx       0x000000000202c1f8      0x180
  .comment       0x0000000000000000       0x23 c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0/crtbegin.o
                                          0x24 (size before relaxing)
  .comment       0x0000000000000023       0x24 Camera.o
- .comment       0x0000000000000023       0x24 ColouredObject.o
+ .comment       0x0000000000000023       0x24 ColouredMeshObject.o
  .comment       0x0000000000000023       0x24 GameObject.o
  .comment       0x0000000000000023       0x24 Mesh.o
- .comment       0x0000000000000023       0x24 MeshedObject.o
  .comment       0x0000000000000023       0x24 SceneGraph.o
+ .comment       0x0000000000000023       0x24 TexturedMeshedObject.o
  .comment       0x0000000000000023       0x24 Transform.o
  .comment       0x0000000000000023       0x24 Vector3.o
  .comment       0x0000000000000023       0x24 main.o
@@ -3546,15 +3546,15 @@ ARM.exidx       0x000000000202c1f8      0x180
  .ARM.attributes
                 0x000000000000007b       0x2b Camera.o
  .ARM.attributes
-                0x00000000000000a6       0x2b ColouredObject.o
+                0x00000000000000a6       0x2b ColouredMeshObject.o
  .ARM.attributes
                 0x00000000000000d1       0x2b GameObject.o
  .ARM.attributes
                 0x00000000000000fc       0x2b Mesh.o
  .ARM.attributes
-                0x0000000000000127       0x2b MeshedObject.o
+                0x0000000000000127       0x2b SceneGraph.o
  .ARM.attributes
-                0x0000000000000152       0x2b SceneGraph.o
+                0x0000000000000152       0x2b TexturedMeshedObject.o
  .ARM.attributes
                 0x000000000000017d       0x2b Transform.o
  .ARM.attributes
@@ -3863,15 +3863,15 @@ ARM.exidx       0x000000000202c1f8      0x180
  .debug_aranges
                 0x0000000000000000       0x20 Camera.o
  .debug_aranges
-                0x0000000000000020       0x20 ColouredObject.o
+                0x0000000000000020       0x20 ColouredMeshObject.o
  .debug_aranges
                 0x0000000000000040       0x20 GameObject.o
  .debug_aranges
                 0x0000000000000060       0x20 Mesh.o
  .debug_aranges
-                0x0000000000000080       0x20 MeshedObject.o
+                0x0000000000000080       0x20 SceneGraph.o
  .debug_aranges
-                0x00000000000000a0       0x20 SceneGraph.o
+                0x00000000000000a0       0x20 TexturedMeshedObject.o
  .debug_aranges
                 0x00000000000000c0       0x20 Transform.o
  .debug_aranges
@@ -3922,110 +3922,110 @@ ARM.exidx       0x000000000202c1f8      0x180
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000    0x1d618
+.debug_info     0x0000000000000000    0x1d5e1
  *(.debug_info)
  .debug_info    0x0000000000000000     0x2147 Camera.o
- .debug_info    0x0000000000002147     0x171d ColouredObject.o
- .debug_info    0x0000000000003864     0x4e1a GameObject.o
- .debug_info    0x000000000000867e      0xdf8 Mesh.o
- .debug_info    0x0000000000009476     0x1532 MeshedObject.o
- .debug_info    0x000000000000a9a8     0x137a SceneGraph.o
- .debug_info    0x000000000000bd22     0x107e Transform.o
- .debug_info    0x000000000000cda0      0xb8e Vector3.o
- .debug_info    0x000000000000d92e     0x346f main.o
- .debug_info    0x0000000000010d9d      0x793 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
- .debug_info    0x0000000000011530     0x26ac C:/devkitPro/libnds/lib\libnds9.a(console.o)
- .debug_info    0x0000000000013bdc      0x97b C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
- .debug_info    0x0000000000014557     0x3895 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
- .debug_info    0x0000000000017dec      0x43b C:/devkitPro/libnds/lib\libnds9.a(keys.o)
- .debug_info    0x0000000000018227     0x113e C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
- .debug_info    0x0000000000019365       0x5a C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
- .debug_info    0x00000000000193bf      0x68d C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
- .debug_info    0x0000000000019a4c      0x367 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
- .debug_info    0x0000000000019db3     0x183f C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
- .debug_info    0x000000000001b5f2       0x23 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
- .debug_info    0x000000000001b615       0x23 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
- .debug_info    0x000000000001b638       0x24 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
- .debug_info    0x000000000001b65c       0x25 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
- .debug_info    0x000000000001b681       0x23 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
- .debug_info    0x000000000001b6a4       0x24 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
- .debug_info    0x000000000001b6c8      0xa9c C:/devkitPro/libnds/lib\libnds9.a(background.o)
- .debug_info    0x000000000001c164      0x2ae C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
- .debug_info    0x000000000001c412      0x790 C:/devkitPro/libnds/lib\libnds9.a(video.o)
- .debug_info    0x000000000001cba2      0xa76 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_info    0x0000000000002147     0x1723 ColouredMeshObject.o
+ .debug_info    0x000000000000386a     0x4e1a GameObject.o
+ .debug_info    0x0000000000008684      0xdf8 Mesh.o
+ .debug_info    0x000000000000947c     0x137a SceneGraph.o
+ .debug_info    0x000000000000a7f6     0x1532 TexturedMeshedObject.o
+ .debug_info    0x000000000000bd28     0x107e Transform.o
+ .debug_info    0x000000000000cda6      0xb8e Vector3.o
+ .debug_info    0x000000000000d934     0x3432 main.o
+ .debug_info    0x0000000000010d66      0x793 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_info    0x00000000000114f9     0x26ac C:/devkitPro/libnds/lib\libnds9.a(console.o)
+ .debug_info    0x0000000000013ba5      0x97b C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+ .debug_info    0x0000000000014520     0x3895 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_info    0x0000000000017db5      0x43b C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_info    0x00000000000181f0     0x113e C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_info    0x000000000001932e       0x5a C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_info    0x0000000000019388      0x68d C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_info    0x0000000000019a15      0x367 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_info    0x0000000000019d7c     0x183f C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_info    0x000000000001b5bb       0x23 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_info    0x000000000001b5de       0x23 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_info    0x000000000001b601       0x24 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_info    0x000000000001b625       0x25 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_info    0x000000000001b64a       0x23 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_info    0x000000000001b66d       0x24 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_info    0x000000000001b691      0xa9c C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_info    0x000000000001c12d      0x2ae C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_info    0x000000000001c3db      0x790 C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_info    0x000000000001cb6b      0xa76 C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
-.debug_abbrev   0x0000000000000000     0x5aa6
+.debug_abbrev   0x0000000000000000     0x5a95
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x621 Camera.o
- .debug_abbrev  0x0000000000000621      0x5e3 ColouredObject.o
- .debug_abbrev  0x0000000000000c04      0xa98 GameObject.o
- .debug_abbrev  0x000000000000169c      0x34c Mesh.o
- .debug_abbrev  0x00000000000019e8      0x5ab MeshedObject.o
- .debug_abbrev  0x0000000000001f93      0x425 SceneGraph.o
- .debug_abbrev  0x00000000000023b8      0x39b Transform.o
- .debug_abbrev  0x0000000000002753      0x2a2 Vector3.o
- .debug_abbrev  0x00000000000029f5      0x688 main.o
- .debug_abbrev  0x000000000000307d      0x26e C:/devkitPro/libnds/lib\libnds9.a(trig.o)
- .debug_abbrev  0x00000000000032eb      0x5b3 C:/devkitPro/libnds/lib\libnds9.a(console.o)
- .debug_abbrev  0x000000000000389e      0x28a C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
- .debug_abbrev  0x0000000000003b28      0x5d2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
- .debug_abbrev  0x00000000000040fa      0x1a7 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
- .debug_abbrev  0x00000000000042a1      0x3e1 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
- .debug_abbrev  0x0000000000004682       0x47 C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
- .debug_abbrev  0x00000000000046c9      0x2da C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
- .debug_abbrev  0x00000000000049a3      0x1ad C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
- .debug_abbrev  0x0000000000004b50      0x4bb C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
- .debug_abbrev  0x000000000000500b       0x12 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
- .debug_abbrev  0x000000000000501d       0x12 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
- .debug_abbrev  0x000000000000502f       0x14 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
- .debug_abbrev  0x0000000000005043       0x14 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
- .debug_abbrev  0x0000000000005057       0x12 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
- .debug_abbrev  0x0000000000005069       0x14 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
- .debug_abbrev  0x000000000000507d      0x366 C:/devkitPro/libnds/lib\libnds9.a(background.o)
- .debug_abbrev  0x00000000000053e3      0x158 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
- .debug_abbrev  0x000000000000553b      0x24c C:/devkitPro/libnds/lib\libnds9.a(video.o)
- .debug_abbrev  0x0000000000005787      0x31f C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_abbrev  0x0000000000000621      0x5d2 ColouredMeshObject.o
+ .debug_abbrev  0x0000000000000bf3      0xa98 GameObject.o
+ .debug_abbrev  0x000000000000168b      0x34c Mesh.o
+ .debug_abbrev  0x00000000000019d7      0x425 SceneGraph.o
+ .debug_abbrev  0x0000000000001dfc      0x5ab TexturedMeshedObject.o
+ .debug_abbrev  0x00000000000023a7      0x39b Transform.o
+ .debug_abbrev  0x0000000000002742      0x2a2 Vector3.o
+ .debug_abbrev  0x00000000000029e4      0x688 main.o
+ .debug_abbrev  0x000000000000306c      0x26e C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_abbrev  0x00000000000032da      0x5b3 C:/devkitPro/libnds/lib\libnds9.a(console.o)
+ .debug_abbrev  0x000000000000388d      0x28a C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+ .debug_abbrev  0x0000000000003b17      0x5d2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_abbrev  0x00000000000040e9      0x1a7 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_abbrev  0x0000000000004290      0x3e1 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_abbrev  0x0000000000004671       0x47 C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_abbrev  0x00000000000046b8      0x2da C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_abbrev  0x0000000000004992      0x1ad C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_abbrev  0x0000000000004b3f      0x4bb C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_abbrev  0x0000000000004ffa       0x12 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_abbrev  0x000000000000500c       0x12 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_abbrev  0x000000000000501e       0x14 C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_abbrev  0x0000000000005032       0x14 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_abbrev  0x0000000000005046       0x12 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_abbrev  0x0000000000005058       0x14 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_abbrev  0x000000000000506c      0x366 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_abbrev  0x00000000000053d2      0x158 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_abbrev  0x000000000000552a      0x24c C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_abbrev  0x0000000000005776      0x31f C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
-.debug_line     0x0000000000000000     0xd434
+.debug_line     0x0000000000000000     0xd421
  *(.debug_line)
  .debug_line    0x0000000000000000      0xc09 Camera.o
- .debug_line    0x0000000000000c09      0x9d2 ColouredObject.o
- .debug_line    0x00000000000015db      0xc0b GameObject.o
- .debug_line    0x00000000000021e6      0x35f Mesh.o
- .debug_line    0x0000000000002545      0x7fe MeshedObject.o
- .debug_line    0x0000000000002d43      0x471 SceneGraph.o
- .debug_line    0x00000000000031b4      0x36f Transform.o
- .debug_line    0x0000000000003523      0x5a4 Vector3.o
- .debug_line    0x0000000000003ac7      0xd8f main.o
- .debug_line    0x0000000000004856      0x837 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
- .debug_line    0x000000000000508d     0x1414 C:/devkitPro/libnds/lib\libnds9.a(console.o)
- .debug_line    0x00000000000064a1      0x659 C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
- .debug_line    0x0000000000006afa     0x2b2f C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
- .debug_line    0x0000000000009629      0x399 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
- .debug_line    0x00000000000099c2      0x597 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
- .debug_line    0x0000000000009f59       0x8f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
- .debug_line    0x0000000000009fe8      0x54c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
- .debug_line    0x000000000000a534      0x23b C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
- .debug_line    0x000000000000a76f     0x14f5 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
- .debug_line    0x000000000000bc64       0xe8 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
- .debug_line    0x000000000000bd4c       0x74 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
- .debug_line    0x000000000000bdc0       0x5c C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
- .debug_line    0x000000000000be1c       0x80 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
- .debug_line    0x000000000000be9c      0x1b0 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
- .debug_line    0x000000000000c04c       0x57 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
- .debug_line    0x000000000000c0a3      0x725 C:/devkitPro/libnds/lib\libnds9.a(background.o)
- .debug_line    0x000000000000c7c8      0x2db C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
- .debug_line    0x000000000000caa3      0x4b5 C:/devkitPro/libnds/lib\libnds9.a(video.o)
- .debug_line    0x000000000000cf58      0x4dc C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_line    0x0000000000000c09      0x9d6 ColouredMeshObject.o
+ .debug_line    0x00000000000015df      0xc0b GameObject.o
+ .debug_line    0x00000000000021ea      0x35f Mesh.o
+ .debug_line    0x0000000000002549      0x471 SceneGraph.o
+ .debug_line    0x00000000000029ba      0x806 TexturedMeshedObject.o
+ .debug_line    0x00000000000031c0      0x36f Transform.o
+ .debug_line    0x000000000000352f      0x5a4 Vector3.o
+ .debug_line    0x0000000000003ad3      0xd70 main.o
+ .debug_line    0x0000000000004843      0x837 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_line    0x000000000000507a     0x1414 C:/devkitPro/libnds/lib\libnds9.a(console.o)
+ .debug_line    0x000000000000648e      0x659 C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+ .debug_line    0x0000000000006ae7     0x2b2f C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_line    0x0000000000009616      0x399 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_line    0x00000000000099af      0x597 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_line    0x0000000000009f46       0x8f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_line    0x0000000000009fd5      0x54c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_line    0x000000000000a521      0x23b C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_line    0x000000000000a75c     0x14f5 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_line    0x000000000000bc51       0xe8 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_line    0x000000000000bd39       0x74 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_line    0x000000000000bdad       0x5c C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_line    0x000000000000be09       0x80 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_line    0x000000000000be89      0x1b0 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_line    0x000000000000c039       0x57 C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_line    0x000000000000c090      0x725 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_line    0x000000000000c7b5      0x2db C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_line    0x000000000000ca90      0x4b5 C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_line    0x000000000000cf45      0x4dc C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
 .debug_frame    0x0000000000000000     0x163c
  *(.debug_frame)
  .debug_frame   0x0000000000000000       0xf4 Camera.o
- .debug_frame   0x00000000000000f4       0xa4 ColouredObject.o
+ .debug_frame   0x00000000000000f4       0xa4 ColouredMeshObject.o
  .debug_frame   0x0000000000000198      0x180 GameObject.o
  .debug_frame   0x0000000000000318       0xb8 Mesh.o
- .debug_frame   0x00000000000003d0       0x9c MeshedObject.o
- .debug_frame   0x000000000000046c      0x100 SceneGraph.o
+ .debug_frame   0x00000000000003d0      0x100 SceneGraph.o
+ .debug_frame   0x00000000000004d0       0x9c TexturedMeshedObject.o
  .debug_frame   0x000000000000056c       0x8c Transform.o
  .debug_frame   0x00000000000005f8      0x184 Vector3.o
  .debug_frame   0x000000000000077c       0x3c main.o
@@ -4043,65 +4043,65 @@ ARM.exidx       0x000000000202c1f8      0x180
  .debug_frame   0x0000000000001488       0xbc C:/devkitPro/libnds/lib\libnds9.a(video.o)
  .debug_frame   0x0000000000001544       0xf8 C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
-.debug_str      0x0000000000000000     0x90fc
+.debug_str      0x0000000000000000     0x9195
  *(.debug_str)
  .debug_str     0x0000000000000000      0xa59 Camera.o
                                         0xb62 (size before relaxing)
- .debug_str     0x0000000000000a59      0x34f ColouredObject.o
-                                        0xb3f (size before relaxing)
- .debug_str     0x0000000000000da8     0x4013 GameObject.o
+ .debug_str     0x0000000000000a59      0x389 ColouredMeshObject.o
+                                        0xb7f (size before relaxing)
+ .debug_str     0x0000000000000de2     0x4013 GameObject.o
                                        0x49c0 (size before relaxing)
- .debug_str     0x0000000000004dbb       0x54 Mesh.o
+ .debug_str     0x0000000000004df5       0x54 Mesh.o
                                         0x668 (size before relaxing)
- .debug_str     0x0000000000004e0f      0x142 MeshedObject.o
-                                        0xadf (size before relaxing)
- .debug_str     0x0000000000004f51      0x244 SceneGraph.o
+ .debug_str     0x0000000000004e49      0x244 SceneGraph.o
                                         0xa7b (size before relaxing)
- .debug_str     0x0000000000005195       0x81 Transform.o
+ .debug_str     0x000000000000508d      0x192 TexturedMeshedObject.o
+                                        0xb37 (size before relaxing)
+ .debug_str     0x000000000000521f       0x81 Transform.o
                                         0x760 (size before relaxing)
- .debug_str     0x0000000000005216       0x6e Vector3.o
+ .debug_str     0x00000000000052a0       0x6e Vector3.o
                                         0x3bd (size before relaxing)
- .debug_str     0x0000000000005284      0xdcf main.o
-                                       0x1b91 (size before relaxing)
- .debug_str     0x0000000000006053      0x1d0 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+ .debug_str     0x000000000000530e      0xdde main.o
+                                       0x1bbc (size before relaxing)
+ .debug_str     0x00000000000060ec      0x1d0 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
                                         0x2fc (size before relaxing)
- .debug_str     0x0000000000006223      0xd64 C:/devkitPro/libnds/lib\libnds9.a(console.o)
+ .debug_str     0x00000000000062bc      0xd64 C:/devkitPro/libnds/lib\libnds9.a(console.o)
                                        0x1282 (size before relaxing)
- .debug_str     0x0000000000006f87       0x9a C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+ .debug_str     0x0000000000007020       0x9a C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
                                         0x50f (size before relaxing)
- .debug_str     0x0000000000007021      0xb9c C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+ .debug_str     0x00000000000070ba      0xb9c C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
                                        0x1740 (size before relaxing)
- .debug_str     0x0000000000007bbd      0x168 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+ .debug_str     0x0000000000007c56      0x168 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
                                         0x420 (size before relaxing)
- .debug_str     0x0000000000007d25      0x45c C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+ .debug_str     0x0000000000007dbe      0x45c C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
                                         0xb81 (size before relaxing)
- .debug_str     0x0000000000008181       0x7f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
+ .debug_str     0x000000000000821a       0x7f C:/devkitPro/libnds/lib\libnds9.a(securearea.o)
                                         0x16e (size before relaxing)
- .debug_str     0x0000000000008200      0x19c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+ .debug_str     0x0000000000008299      0x19c C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
                                         0x496 (size before relaxing)
- .debug_str     0x000000000000839c      0x115 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+ .debug_str     0x0000000000008435      0x115 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
                                         0x3e5 (size before relaxing)
- .debug_str     0x00000000000084b1      0x455 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+ .debug_str     0x000000000000854a      0x455 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
                                         0x8a9 (size before relaxing)
- .debug_str     0x0000000000008906       0x18 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+ .debug_str     0x000000000000899f       0x18 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
                                          0x6c (size before relaxing)
- .debug_str     0x000000000000891e        0xb C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+ .debug_str     0x00000000000089b7        0xb C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
                                          0x6b (size before relaxing)
- .debug_str     0x0000000000008929        0xc C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
+ .debug_str     0x00000000000089c2        0xc C:/devkitPro/libnds/lib\libnds9.a(cpu_clock.o)
                                          0x6c (size before relaxing)
- .debug_str     0x0000000000008935       0x16 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
+ .debug_str     0x00000000000089ce       0x16 C:/devkitPro/libnds/lib\libnds9.a(interruptDispatcher.o)
                                          0x76 (size before relaxing)
- .debug_str     0x000000000000894b        0xc C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+ .debug_str     0x00000000000089e4        0xc C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
                                          0x6c (size before relaxing)
- .debug_str     0x0000000000008957        0xf C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
+ .debug_str     0x00000000000089f0        0xf C:/devkitPro/libnds/lib\libnds9.a(swiSoftReset.o)
                                          0x6f (size before relaxing)
- .debug_str     0x0000000000008966      0x2f2 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+ .debug_str     0x00000000000089ff      0x2f2 C:/devkitPro/libnds/lib\libnds9.a(background.o)
                                         0x7a2 (size before relaxing)
- .debug_str     0x0000000000008c58       0x8b C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+ .debug_str     0x0000000000008cf1       0x8b C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
                                         0x2a5 (size before relaxing)
- .debug_str     0x0000000000008ce3       0xb8 C:/devkitPro/libnds/lib\libnds9.a(video.o)
+ .debug_str     0x0000000000008d7c       0xb8 C:/devkitPro/libnds/lib\libnds9.a(video.o)
                                         0xc53 (size before relaxing)
- .debug_str     0x0000000000008d9b      0x361 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+ .debug_str     0x0000000000008e34      0x361 C:/devkitPro/libnds/lib\libnds9.a(system.o)
                                         0x798 (size before relaxing)
 
 .debug_loc
@@ -4130,11 +4130,11 @@ LOAD c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0/crti.o
 LOAD c:/devkitpro/devkitarm/bin/../lib/gcc/arm-none-eabi/12.1.0/crtbegin.o
 LOAD texture.bin.o
 LOAD Camera.o
-LOAD ColouredObject.o
+LOAD ColouredMeshObject.o
 LOAD GameObject.o
 LOAD Mesh.o
-LOAD MeshedObject.o
 LOAD SceneGraph.o
+LOAD TexturedMeshedObject.o
 LOAD Transform.o
 LOAD Vector3.o
 LOAD main.o
@@ -4153,98 +4153,98 @@ OUTPUT(C:/devkitPro/Engine2/Engine2.elf elf32-littlearm)
 LOAD linker stubs
 
 .debug_loclists
-                0x0000000000000000     0x78f4
+                0x0000000000000000     0x78d2
  .debug_loclists
                 0x0000000000000000      0xa11 Camera.o
  .debug_loclists
-                0x0000000000000a11      0x1a9 ColouredObject.o
+                0x0000000000000a11      0x1b4 ColouredMeshObject.o
  .debug_loclists
-                0x0000000000000bba      0x798 GameObject.o
+                0x0000000000000bc5      0x798 GameObject.o
  .debug_loclists
-                0x0000000000001352       0x64 Mesh.o
+                0x000000000000135d       0x64 Mesh.o
  .debug_loclists
-                0x00000000000013b6      0x134 MeshedObject.o
+                0x00000000000013c1      0x230 SceneGraph.o
  .debug_loclists
-                0x00000000000014ea      0x230 SceneGraph.o
+                0x00000000000015f1      0x134 TexturedMeshedObject.o
  .debug_loclists
-                0x000000000000171a       0x76 Transform.o
+                0x0000000000001725       0x76 Transform.o
  .debug_loclists
-                0x0000000000001790      0x330 Vector3.o
+                0x000000000000179b      0x330 Vector3.o
  .debug_loclists
-                0x0000000000001ac0      0x59c main.o
+                0x0000000000001acb      0x56f main.o
  .debug_loclists
-                0x000000000000205c      0x779 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+                0x000000000000203a      0x779 C:/devkitPro/libnds/lib\libnds9.a(trig.o)
  .debug_loclists
-                0x00000000000027d5      0xf6c C:/devkitPro/libnds/lib\libnds9.a(console.o)
+                0x00000000000027b3      0xf6c C:/devkitPro/libnds/lib\libnds9.a(console.o)
  .debug_loclists
-                0x0000000000003741      0x42f C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+                0x000000000000371f      0x42f C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
  .debug_loclists
-                0x0000000000003b70     0x25a2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+                0x0000000000003b4e     0x25a2 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
  .debug_loclists
-                0x0000000000006112       0x17 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+                0x00000000000060f0       0x17 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
  .debug_loclists
-                0x0000000000006129       0xc5 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+                0x0000000000006107       0xc5 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
  .debug_loclists
-                0x00000000000061ee      0x1a5 C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+                0x00000000000061cc      0x1a5 C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
  .debug_loclists
-                0x0000000000006393       0x48 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+                0x0000000000006371       0x48 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
  .debug_loclists
-                0x00000000000063db      0xe1a C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+                0x00000000000063b9      0xe1a C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
  .debug_loclists
-                0x00000000000071f5      0x2a3 C:/devkitPro/libnds/lib\libnds9.a(background.o)
+                0x00000000000071d3      0x2a3 C:/devkitPro/libnds/lib\libnds9.a(background.o)
  .debug_loclists
-                0x0000000000007498      0x142 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+                0x0000000000007476      0x142 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
  .debug_loclists
-                0x00000000000075da      0x1da C:/devkitPro/libnds/lib\libnds9.a(video.o)
+                0x00000000000075b8      0x1da C:/devkitPro/libnds/lib\libnds9.a(video.o)
  .debug_loclists
-                0x00000000000077b4      0x140 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+                0x0000000000007792      0x140 C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
 .debug_rnglists
-                0x0000000000000000     0x16ab
+                0x0000000000000000     0x169c
  .debug_rnglists
                 0x0000000000000000      0x2a3 Camera.o
  .debug_rnglists
-                0x00000000000002a3      0x16e ColouredObject.o
+                0x00000000000002a3      0x16e ColouredMeshObject.o
  .debug_rnglists
                 0x0000000000000411      0x19c GameObject.o
  .debug_rnglists
-                0x00000000000005ad       0x96 MeshedObject.o
+                0x00000000000005ad       0x96 TexturedMeshedObject.o
  .debug_rnglists
                 0x0000000000000643       0x56 Vector3.o
  .debug_rnglists
-                0x0000000000000699      0x1d0 main.o
+                0x0000000000000699      0x1c1 main.o
  .debug_rnglists
-                0x0000000000000869       0x9d C:/devkitPro/libnds/lib\libnds9.a(trig.o)
+                0x000000000000085a       0x9d C:/devkitPro/libnds/lib\libnds9.a(trig.o)
  .debug_rnglists
-                0x0000000000000906      0x20e C:/devkitPro/libnds/lib\libnds9.a(console.o)
+                0x00000000000008f7      0x20e C:/devkitPro/libnds/lib\libnds9.a(console.o)
  .debug_rnglists
-                0x0000000000000b14      0x120 C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
+                0x0000000000000b05      0x120 C:/devkitPro/libnds/lib\libnds9.a(boxtest.o)
  .debug_rnglists
-                0x0000000000000c34      0x4d9 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
+                0x0000000000000c25      0x4d9 C:/devkitPro/libnds/lib\libnds9.a(videoGL.o)
  .debug_rnglists
-                0x000000000000110d       0x44 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
+                0x00000000000010fe       0x44 C:/devkitPro/libnds/lib\libnds9.a(keys.o)
  .debug_rnglists
-                0x0000000000001151       0x20 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
+                0x0000000000001142       0x20 C:/devkitPro/libnds/lib\libnds9.a(initSystem.o)
  .debug_rnglists
-                0x0000000000001171       0x8b C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
+                0x0000000000001162       0x8b C:/devkitPro/libnds/lib\libnds9.a(interrupts.o)
  .debug_rnglists
-                0x00000000000011fc       0x19 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
+                0x00000000000011ed       0x19 C:/devkitPro/libnds/lib\libnds9.a(libnds_exit.arm.o)
  .debug_rnglists
-                0x0000000000001215      0x2a4 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
+                0x0000000000001206      0x2a4 C:/devkitPro/libnds/lib\libnds9.a(fifosystem.o)
  .debug_rnglists
-                0x00000000000014b9       0x20 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
+                0x00000000000014aa       0x20 C:/devkitPro/libnds/lib\libnds9.a(mpu_setup.o)
  .debug_rnglists
-                0x00000000000014d9       0x19 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
+                0x00000000000014ca       0x19 C:/devkitPro/libnds/lib\libnds9.a(IntrWait.o)
  .debug_rnglists
-                0x00000000000014f2       0x91 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
+                0x00000000000014e3       0x91 C:/devkitPro/libnds/lib\libnds9.a(biosCalls.o)
  .debug_rnglists
-                0x0000000000001583       0x7c C:/devkitPro/libnds/lib\libnds9.a(background.o)
+                0x0000000000001574       0x7c C:/devkitPro/libnds/lib\libnds9.a(background.o)
  .debug_rnglists
-                0x00000000000015ff       0x25 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
+                0x00000000000015f0       0x25 C:/devkitPro/libnds/lib\libnds9.a(dynamicArray.o)
  .debug_rnglists
-                0x0000000000001624       0x3e C:/devkitPro/libnds/lib\libnds9.a(video.o)
+                0x0000000000001615       0x3e C:/devkitPro/libnds/lib\libnds9.a(video.o)
  .debug_rnglists
-                0x0000000000001662       0x49 C:/devkitPro/libnds/lib\libnds9.a(system.o)
+                0x0000000000001653       0x49 C:/devkitPro/libnds/lib\libnds9.a(system.o)
 
 .debug_line_str
                 0x0000000000000000      0x113

@@ -6,19 +6,19 @@
 #include "GameObject.h"
 
 // Constructor for a MeshedObject.
-MeshedObject::MeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID) : GameObject(position, rotation, scale){
+TexturedMeshedObject::TexturedMeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID) : GameObject(position, rotation, scale){
     this->mesh = mesh;
     this->textureID = textureID;
 }
 
 // Deconstructor for a MeshedObject.
-MeshedObject::~MeshedObject(){}
+TexturedMeshedObject::~TexturedMeshedObject(){}
 
 // Generic Update for a ColouredObject.
-void MeshedObject::UpdateEntity(u16 keysHeld) {}
+void TexturedMeshedObject::UpdateEntity(u16 keysHeld) {}
 
 // Draws the MeshedObject
-void MeshedObject::DrawEntity(){
+void TexturedMeshedObject::DrawEntity(){
     // Gets the mesh data.
     v16* vertices = this->mesh.getVertices();
     u8* quads = this->mesh.getQuads();

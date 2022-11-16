@@ -38,10 +38,10 @@ class GameObject{
         virtual void DrawEntity();
 };
 
-class MeshedObject : public GameObject{
+class TexturedMeshedObject : public GameObject{
     public:
-        MeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID);
-        ~MeshedObject();
+        TexturedMeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID);
+        ~TexturedMeshedObject();
     protected:
         void UpdateEntity(u16 keysHeld) override;
         void DrawEntity() override;
@@ -49,10 +49,10 @@ class MeshedObject : public GameObject{
         Mesh mesh;
 };
 
-class ColouredObject : public GameObject{
+class ColouredMeshedObject : public GameObject{
     public:
-        ColouredObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, Vector3 color);
-        ~ColouredObject();
+        ColouredMeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, Vector3 color);
+        ~ColouredMeshedObject();
     protected:
         void UpdateEntity(u16 keysHeld) override;
         void DrawEntity() override;
