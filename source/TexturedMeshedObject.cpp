@@ -1,19 +1,19 @@
 #include "GameObject.h"
 
 // Constructor for a MeshedObject.
-MeshedObject::MeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID) : GameObject(position, rotation, scale){
+TexturedMeshedObject::TexturedMeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, int textureID) : GameObject(position, rotation, scale){
     this->mesh = mesh;
     this->textureID = textureID;
 }
 
 // Deconstructor for a MeshedObject.
-MeshedObject::~MeshedObject(){}
+TexturedMeshedObject::~TexturedMeshedObject(){}
 
 // Generic Update for a ColouredObject.
-void MeshedObject::UpdateEntity(u16 keysHeld) {}
+void TexturedMeshedObject::UpdateEntity(u16 keysHeld) {}
 
 // Draws the MeshedObject
-void MeshedObject::DrawEntity(){
+void TexturedMeshedObject::DrawEntity(){
     // Gets the mesh data.
     v16* vertices = this->mesh.getVertices();
     u8* quads = this->mesh.getQuads();
@@ -25,7 +25,7 @@ void MeshedObject::DrawEntity(){
 
     // For every polygon in the mesh, draw it.
     for(int i = 0; i < this->mesh.polygons; i++){
-        if(Counter::Polygons::count >= 4000) return;
+        if(Counter::Mesh::polygons >= 4000) return;
 
         // Gets the vertices of the quad.
         u32 f1 = quads[i * 4] ;
@@ -50,6 +50,7 @@ void MeshedObject::DrawEntity(){
 	    glVertex3v16(vertices[f4*3], vertices[f4*3 + 1], vertices[f4*3 + 2] );
         glEnd();
         
-        Counter::Polygons::count++;
+        Counter::Mesh::polygons += 2;
+        Counter::Mesh::vertices += 4;
     }
 }   

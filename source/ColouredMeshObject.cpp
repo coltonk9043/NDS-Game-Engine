@@ -1,21 +1,21 @@
 #include "GameObject.h"
 
 // Constructor for a coloured GameObject.
-ColouredObject::ColouredObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, Vector3 colour) : GameObject(position, rotation, scale){
+ColouredMeshedObject::ColouredMeshedObject(Vector3 position, Vector3 rotation, Vector3 scale, Mesh mesh, Vector3 colour) : GameObject(position, rotation, scale){
     this->mesh = mesh;
     this->colour = colour;
 }
 
 // Deconstructor for a coloured GameObject.
-ColouredObject::~ColouredObject(){}
+ColouredMeshedObject::~ColouredMeshedObject(){}
 
 // Generic Update for a ColouredObject.
-void ColouredObject::UpdateEntity(u16 keysHeld) {}
+void ColouredMeshedObject::UpdateEntity(u16 keysHeld) {}
 
 /*
 // Draw call function
 */
-void ColouredObject::DrawEntity(){
+void ColouredMeshedObject::DrawEntity(){
     // Gets the mesh data.
     v16* vertices = this->mesh.getVertices();
     u8* quads = this->mesh.getQuads();
@@ -23,7 +23,7 @@ void ColouredObject::DrawEntity(){
 
     // For every polygon in the mesh, draw it.
     for(int i = 0; i < this->mesh.polygons; i++){
-        if(Counter::Polygons::count >= 4000) return;
+        if(Counter::Mesh::polygons >= 4000) return;
 
         // Gets the vertices of the quad.
         u32 f1 = quads[i * 4] ;
@@ -32,7 +32,7 @@ void ColouredObject::DrawEntity(){
 	    u32 f4 = quads[i * 4 + 3] ;
 
         // OpenGL draw quad.
-        glBegin(GL_QUADS);
+        glBegin(GL_QUAD);
         glNormal(normals[i]);
 
         glColor3f(colour.x, colour.y, colour.z);
@@ -49,6 +49,7 @@ void ColouredObject::DrawEntity(){
 
         glEnd();
 
-        Counter::Polygons::count++;
+        Counter::Mesh::polygons += 2;
+        Counter::Mesh::vertices += 4;
     }
 }   
