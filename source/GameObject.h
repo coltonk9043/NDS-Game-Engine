@@ -1,6 +1,3 @@
-/*
-* Class containing all of the class definitions of different GameObjects
-*/
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 

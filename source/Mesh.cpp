@@ -1,7 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A class that represents a Mesh.
-*/
 #include "Mesh.h"
 
 // Default Constructor for a Mesh

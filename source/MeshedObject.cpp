@@ -1,8 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A class that represents a GameObject with Mesh and Texture.
-*/
-
 #include "GameObject.h"
 
 // Constructor for a MeshedObject.

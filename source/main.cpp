@@ -1,8 +1,3 @@
-/*
-// Colton Kennedy - Engine 2
-// 10/20/2022
-*/
-
 #include <nds.h>
 #include <stdlib.h>
 #include <stdio.h>

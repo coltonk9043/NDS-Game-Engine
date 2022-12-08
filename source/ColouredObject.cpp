@@ -1,8 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A class that represents GameObject with a mesh and colour.
-*/
-
 #include "GameObject.h"
 
 // Constructor for a coloured GameObject.

@@ -1,8 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A header containing definition of a SceneGraph class
-*/
-
 #ifndef SCENEGRAPH_H
 #define SCENEGRAPH_H
 

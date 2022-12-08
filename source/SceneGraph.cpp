@@ -1,8 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A class that represents a SceneGraph
-*/
-
 #include "SceneGraph.h"
 
 // Constructor for a Scene graph. Requires a root GameObject.

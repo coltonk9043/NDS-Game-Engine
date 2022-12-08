@@ -1,7 +1,3 @@
-/*
-.. Colton Kennedy - 251 089 374 - 10/28/2022
-.. A header containing definition of a Vector class
-*/
 #ifndef VECTOR3F_H
 #define VECTOR3F_H
 
